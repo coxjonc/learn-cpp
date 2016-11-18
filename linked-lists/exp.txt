@@ -1,0 +1,11 @@
+Arrays aren't always as efficient as linked lists
+
+Memory manager is tasked with allocating memory
+
+Address of a block of memory is the address of the first byte
+
+Irrespective of the size of an array, the application can access any of the elements of the array in constant time
+
+Can't really extend an array after it's declared.
+
+In a linked list, instead of asking for a block of memory, you request one block at a time.
