@@ -1,41 +1,71 @@
 #include <stdlib.h>
+#include <iostream>
 
-// Data stored in multiple non-contiguous blocks of memory
-// Each node has two fields, one to store the data, and one to store 
-// the address of the next node (the LINK to the next node)
-// No guarantee that the nodes will be adjacent
-// Pointer to node will store the address of the first node. The only 
-// identity of the linked list that you keep with you all the time.
-// Creating a node is nothing but allocating a memory block
+using namespace std;
 
-int main () {
-  struct Node
-  {
-    double data;
-    Node * link;
-  };
+struct Node {
+  int data;
+  Node * next;
+};
 
-  Node * A;
-  A = NULL;
+Node * head;
+
+Node * GetNode (int i)
+{
+  int j = 0;
+  Node * p = head;
+
+  while (j < i) {
+    p = p->next;
+    j++;
+  }
+
+  return p;
+}
+
+
+void Insert (int x, int i)
+{
+  Node * p = GetNode(i-1);
 
   Node * temp = new Node();
-  temp->data = 2;
-  temp->link = NULL;
+  temp->next = p->next;
+  temp->data = x;
 
-  A = temp; // After assigning this, never modify the address of the head node. Create temp vars
+  p->next = temp;
+}
 
-  temp = new Node();
-  temp -> data = 4;
-  temp -> link = NULL;
 
-  Node * temp1 = A;
-  while (temp1->link != NULL)
+void Append (int x)
+{
+  Node * p = head;
+
+  while (p->next != NULL)
   {
-    temp1 = temp1->link;
+    p = p->next;
   }
-  temp1->link = temp;
 
-  // Each time you want to create a new node, first create a node (line 11), then
-  // traverse the list and, when you reach the end where the link is null assign 
-  // the value of the link to the address of the new node you just created
+  Node * temp = new Node();
+  temp->data = x;
+  temp->next = NULL;
+
+  p->next = temp;
+}
+
+
+int main () {
+  Node * temp = new Node();
+  temp->next = NULL;
+  temp->data = 2;
+
+  head = temp;
+  Append(42);
+  Insert(69, 1);
+
+  cout << "Got value: ";
+  
+  Node * value = GetNode(1);
+  cout << value->data << endl;
+
+  return 0;
 }
