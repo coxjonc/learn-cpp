@@ -30,7 +30,7 @@ void ReversePrint(Node * p) {
     printf("%d", p->data);
     return;
   }
-  Print(p->next);
+  ReversePrint(p->next);
   printf("%d", p->data);
 }
 
