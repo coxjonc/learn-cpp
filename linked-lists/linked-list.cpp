@@ -59,12 +59,14 @@ int main () {
   temp->data = 2;
 
   head = temp;
+
   Append(42);
   Insert(69, 1);
+  Insert(100, 2);
 
   cout << "Got value: ";
   
-  Node * value = GetNode(1);
+  Node * value = GetNode(3);
   cout << value->data << endl;
 
   return 0;
